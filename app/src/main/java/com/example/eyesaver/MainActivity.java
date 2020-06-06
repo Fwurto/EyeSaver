@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     public void StartTimer (int HT, int MT) {
             if (WTimerState) {
                 //Work timer
-                TimerTime = HT * 3600000 + MT * 600;//+00
+                TimerTime = HT * 3600000 + MT * 60000;
                 tmr = new CountDownTimer(TimerTime, 1000) {
                     @Override
                     public void onTick(long millisUntilFinished) {
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 }.start();
             } else {
                 //Eyes timer
-                TimerTime = HT * 3600000 + MT * 600; //+00
+                TimerTime = HT * 3600000 + MT * 60000;
                 tmr = new CountDownTimer(TimerTime, 1000) {
                     @Override
                     public void onTick(long millisUntilFinished) {

@@ -20,8 +20,8 @@ public class StopActivity extends Activity implements View.OnClickListener{
         setContentView(R.layout.stop_timer_button);
         Btnn = findViewById(R.id.AcceptTimer);
         Text = findViewById(R.id.TimeIsUpText);
-
         Btnn.setOnClickListener(this);
+
         player = MediaPlayer.create(this,R.raw.simple_marimba);
         player.setLooping(true);
         player.start();

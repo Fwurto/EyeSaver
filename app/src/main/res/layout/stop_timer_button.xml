@@ -19,7 +19,7 @@
             android:layout_weight="1" >
 
             <TextView
-                android:id="@+id/TimeIsUpText"
+                android:id="@+id/TimeIsUpNotify"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -36,7 +36,7 @@
             android:layout_weight="1">
 
             <TextView
-                android:id="@+id/TimeIsUp"
+                android:id="@+id/TimeIsUpText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

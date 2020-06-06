@@ -5,41 +5,46 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-//import android.os.CountDownTimer;
+import android.os.CountDownTimer;
+import android.widget.TextView;
 
 public class StopActivity extends Activity implements View.OnClickListener{
     Button Btnn;
-
-    //public CountDownTimer tmr;
+    TextView Text;
 
     public MediaPlayer player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.stop_timer_button);
+        Btnn = findViewById(R.id.AcceptTimer);
+        Text = findViewById(R.id.TimeIsUpText);
 
-        /*tmr = new CountDownTimer(300,300) {
+        Btnn.setOnClickListener(this);
+        player = MediaPlayer.create(this,R.raw.simple_marimba);
+        player.setLooping(true);
+        player.start();
+
+        Bundle arguments = getIntent().getExtras();
+        if(arguments.getBoolean("WTimer")) {
+            Text.setText("It's time to distract from the screen");
+        } else {
+            Text.setText("Time to get back to work");
+        }
+
+        new CountDownTimer(30000,30000) {
             @Override
             public void onTick(long i) {}
             @Override
-            public void onFinish() {
-                player.stop();
-            }
-        }.start(); */
-
-        setContentView(R.layout.stop_timer_button);
-
-        Btnn = findViewById(R.id.AcceptTimer);
-        Btnn.setOnClickListener(this);
-        /*player.setLooping(true);
-        player = MediaPlayer.create(this,R.raw.alarm_classic);
-        player.start(); */
+            public void onFinish() {finish();}
+        }.start();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //player.stop();
+        player.stop();
         MainActivity.current.AcceptTimer();
     }
 

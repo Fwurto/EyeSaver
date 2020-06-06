@@ -12,10 +12,11 @@
         android:id="@+id/SettingsImage"
         android:layout_width="54dp"
         android:layout_height="54dp"
-        android:layout_marginEnd="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
+        android:alpha="0.7"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_preferences" />
+        app:srcCompat="@drawable/icon_8gear1" />
 
     <TableLayout
         android:id="@+id/WorkSelectorTableL"
@@ -110,7 +111,7 @@
                 android:layout_weight="0"
                 android:gravity="center"
                 android:text=":"
-                android:textSize="48sp" />
+                android:textSize="58sp" />
 
             <TextView
                 android:id="@+id/WorkMinutesSelector2"
@@ -263,7 +264,7 @@
                 android:layout_weight="0"
                 android:gravity="center"
                 android:text=":"
-                android:textSize="48sp" />
+                android:textSize="58sp" />
 
             <TextView
                 android:id="@+id/EyesMinutesSelector2"
@@ -352,7 +353,8 @@
                     android:id="@+id/StartAndStopImgButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:srcCompat="@drawable/playicon2" />
+                    android:alpha="0.7"
+                    app:srcCompat="@drawable/icon_start1" />
             </FrameLayout>
         </TableRow>
 

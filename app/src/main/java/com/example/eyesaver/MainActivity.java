@@ -60,10 +60,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         EMSTime = savedTime;
     }
     public void StartTimer (int HT, int MT) {
-        //if (tmr == null) {
-            if (WETimerState) {
+            if (WTimerState) {
                 //Work timer
-                TimerTime = HT * 3600000 + MT * 60;//+000
+                TimerTime = HT * 3600000 + MT * 600;//+00
                 tmr = new CountDownTimer(TimerTime, 1000) {
                     @Override
                     public void onTick(long millisUntilFinished) {
@@ -82,15 +81,16 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                     @Override
                     public void onFinish() {
                         WorkLCD.setText(":");
-                        WETimerState = false;
+                        WTimerState = false;
                         Intent intent = new Intent(MainActivity.this, StopActivity.class);
+                        intent.putExtra("WTimer",true);
                         startActivity(intent);
                         TimerState = true;
                     }
                 }.start();
             } else {
                 //Eyes timer
-                TimerTime = HT * 3600000 + MT * 60000;
+                TimerTime = HT * 3600000 + MT * 600; //+00
                 tmr = new CountDownTimer(TimerTime, 1000) {
                     @Override
                     public void onTick(long millisUntilFinished) {
@@ -109,17 +109,14 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                     @Override
                     public void onFinish() {
                         EyesLCD.setText(":");
-                        WETimerState = true;
+                        WTimerState = true;
                         Intent intent = new Intent(MainActivity.this, StopActivity.class);
+                        intent.putExtra("WTimer",false);
                         startActivity(intent);
                         TimerState = true;
                     }
                 }.start();
             }
-        //} else {
-        //    tmr.cancel();
-        //    StartTimer(WHSTime, WMSTime);
-        //}
     }
     public void AcceptTimer () {
         GetWorkSavedTime();
@@ -141,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     final String EYES_SAVED_TIME_H = "eyes_saved_time_h";
     final String EYES_SAVED_TIME_M = "eyes_saved_time_m";
     public CountDownTimer tmr;
-    public boolean WETimerState = true;
+    public boolean WTimerState = true;
     public boolean TimerState = false;
     int HRunTime;
     int MRunTime;
@@ -178,12 +175,12 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             tmr.cancel();
             WorkLCD.setText(":");
             EyesLCD.setText(":");
-            WETimerState = true;
+            WTimerState = true;
             GetWorkSavedTime();
             SetWorkTimerText(WHSTime,WMSTime);
             GetEyesSavedTime();
             SetEyesTimerText(EHSTime,EMSTime);
-            SSButt.setImageResource(R.drawable.playicon2);
+            SSButt.setImageResource(R.drawable.icon_start1);
         } else {
             SharedPreferences.Editor ed = sPref.edit();
             ed.putInt(WORK_SAVED_TIME_H,WHSTime);
@@ -192,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             ed.putInt(EYES_SAVED_TIME_M,EMSTime);
             ed.apply();
             Toast.makeText(this, "Time saved", Toast.LENGTH_SHORT).show();
-            SSButt.setImageResource(R.drawable.stopicon);
+            SSButt.setImageResource(R.drawable.icon_stop1);
             StartTimer(WHSTime,WMSTime);
         }
         TimerState=!TimerState;
